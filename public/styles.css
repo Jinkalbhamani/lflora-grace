@@ -1,0 +1,177 @@
+/* --- High-End Luxury Typography & Layout Reset Configuration --- */
+:root {
+    --luxury-cream: #f4f1eb;
+    --luxury-text-dark: #111111;
+    --luxury-text-muted: #666666;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--luxury-text-dark);
+    background-color: #faf9f6;
+    overflow-x: hidden;
+}
+
+/* --- Announcement Utility Top Bar Configuration --- */
+.announcement-bar {
+    background-color: var(--luxury-text-dark);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+}
+.tracking-widest { letter-spacing: 0.18em; }
+.tracking-wider { letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 400; }
+.small-close { scale: 0.65; filter: invert(1); }
+
+/* --- Navigation & Brand Architecture Styling --- */
+.navbar-nav .nav-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    color: var(--luxury-text-dark) !important;
+}
+.brand-name {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 2.1rem;
+    letter-spacing: 0.25em;
+    line-height: 1;
+}
+.brand-sub {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.55em;
+    color: var(--luxury-text-muted);
+    display: block;
+    margin-top: 2px;
+    text-indent: 0.55em;
+}
+
+/* --- Hero Frame Display Area Component Styling --- */
+.hero-section {
+    min-height: 82vh;
+    padding: rem 0;
+    background-color: #eee9e5;
+    
+}
+.hero-title {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--luxury-text-dark);
+}
+.hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 380px;
+}
+.btn-luxury {
+    border-radius: 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    background-color: var(--luxury-text-dark);
+    transition: all 0.4s ease;
+}
+.btn-luxury:hover {
+    background-color: transparent;
+    color: var(--luxury-text-dark);
+    border: 1px solid var(--luxury-text-dark);
+}
+.hero-image-wrapper {
+    max-width: 82%;
+    margin: 0 auto;
+}
+.hero-img {
+    mix-blend-mode: multiply;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* --- Trust/Value Proposition Structure Styling --- */
+.trust-bar {
+    background-color: #fbfbfa;
+}
+.trust-item i {
+    color: #444;
+}
+.trust-item span {
+    font-size: 0.68rem;
+    display: block;
+}
+
+/* --- Split Block Sections Module Layout Logic --- */
+.bg-cream {
+    background-color: var(--luxury-cream);
+}
+.min-vh-50 {
+    min-height: 50vh;
+}
+.split-image-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+}
+.section-serif-title {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.25;
+}
+.lead-sm {
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+.small-link {
+    font-size: 0.7rem;
+}
+
+/* --- E-Commerce Dynamic Catalog Product System Layout --- */
+.bg-light-gray { background-color: #fdfdfc; }
+.product-img-frame {
+    background-color: var(--luxury-cream);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+}
+.product-img-frame:hover {
+    opacity: 0.9;
+}
+.product-item-image {
+    max-height: 82%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+.product-item-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+.product-item-desc {
+    font-size: 0.75rem;
+    font-style: italic;
+    font-family: var(--font-serif);
+}
+.product-item-price {
+    font-size: 0.82rem;
+    font-weight: 400;
+}
+.add-to-bag-btn {
+    font-size: 0.68rem;
+    padding: 0 0 2px 0;
+}
+
+/* --- Responsive Adaptations Framework --- */
+@media(max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #ffffff;
+        padding: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .minimal-reverse-row {
+        flex-direction: column-reverse !important;
+    }
+    .hero-title { font-size: 2.8rem; }
+}

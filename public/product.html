@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'FLORA GRACE | Shop Haute Cosmetics</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Luxury Typography Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-pure-white: #ffffff;
+            --bg-luxury-cream: #f6f4f0;
+            --bg-luxury-mint: #f0f5f2; /* Inspired by the clean background in your images */
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --luxury-dark-green: #0b3c26; /* Dark branding text style color */
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-pure-white);
+            color: #111111;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Navbar: Pure White --- */
+        .luxury-navbar {
+            background-color: var(--bg-pure-white);
+            border-bottom: 1px solid #e5e5e0;
+        }
+
+        /* --- Hero Section: Pure White --- */
+        .luxury-hero {
+            background-color: var(--bg-pure-white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #777777;
+        }
+
+        /* --- Main Product Workspace: Luxury Cream --- */
+        .main-cream-workspace {
+            background-color: var(--bg-luxury-cream);
+            padding: 5rem 0;
+            border-top: 1px solid #e5e5e0;
+            min-height: 60vh;
+        }
+
+        .product-card-container {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .image-cream-box {
+            background-color: var(--bg-pure-white);
+            padding: 3.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            height: 450px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .image-cream-box:hover {
+            transform: translateY(-4px);
+        }
+        .image-cream-box img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+        .prod-title {
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .prod-title:hover {
+            color: #777777;
+        }
+        .prod-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #777777;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+        }
+        .prod-price {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #222222;
+            margin-bottom: 1.2rem;
+        }
+        .btn-add-to-bag {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: transparent;
+            color: #111111;
+            border: 1px solid #111111;
+            padding: 0.4rem 1.4rem;
+            border-radius: 30px;
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-add-to-bag:hover {
+            background-color: #111111;
+            color: var(--bg-pure-white);
+        }
+
+        /* --- Luxury Detail Modal Styles --- */
+        .luxury-modal .modal-content {
+            border: none;
+            border-radius: 0;
+            background-color: var(--bg-luxury-mint);
+        }
+        .modal-feature-title {
+            color: var(--luxury-dark-green);
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .feature-callout {
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+        }
+        .feature-heading {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: #222;
+        }
+        .pointer-line {
+            border-top: 1px solid #a3b899;
+            margin-top: 8px;
+            position: relative;
+        }
+        .pointer-line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -3px;
+            width: 7px;
+            height: 7px;
+            background-color: #a3b899;
+            border-radius: 50%;
+        }
+        .review-section-title {
+            color: var(--luxury-dark-green);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid #d1ded6;
+            padding-bottom: 0.5rem;
+        }
+        .review-box {
+            font-size: 0.85rem;
+            border-bottom: 1px solid #e2ece6;
+            padding-bottom: 1rem;
+        }
+        .star-rating {
+            color: var(--luxury-dark-green);
+            font-size: 0.75rem;
+        }
+        .verified-badge {
+            background-color: #f7ebe8;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Architecture -->
+    <header class="navbar navbar-expand-lg navbar-light luxury-navbar py-3 px-4">
+        <div class="container-fluid">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100 order-1 order-lg-0" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link text-uppercase active" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="#science">Science</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="ingredients.html">Ingredients</a></li>
+                </ul>
+            </div>
+            <a class="navbar-brand mx-auto text-center order-0" href="shop.html">
+                <h1 class="mb-0" style="font-family: var(--font-serif); letter-spacing: 0.2em; font-size: 1.8rem;">L'FLORA</h1>
+                <span style="font-size: 0.65rem; letter-spacing: 0.4em; display:block; color: #777777;">GRACE</span>
+            </a>
+            <div class="collapse navbar-collapse w-100 order-2 justify-content-end" id="navbarNavRight">
+                <ul class="navbar-nav gap-3 flex-row justify-content-end align-items-center">
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="account.html"><i class="bi bi-person"></i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="cart.html"><i class="bi bi-bag"></i> (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="luxury-hero">
+        <span class="hero-subtitle">The Autumn Drop</span>
+        <h2 class="hero-title">Curated Botanical Elixirs</h2>
+        <p class="text-muted small max-w-md mx-auto" style="max-width: 500px; font-weight: 300;">Advanced organic micro-formulations engineered to revitalize cellular balance and restore radiant vitality.</p>
+    </section>
+
+    <!-- Main Container Body Section inside Luxury Cream Workspace -->
+    <main class="main-cream-workspace">
+        <div class="container px-4">
+            <div id="curated-elixirs" class="row g-4 justify-content-start">
+                <!-- Products loaded here via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Dynamic Product Details Modal Layout -->
+    <div class="modal fade luxury-modal" id="productDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content p-4 p-md-5">
+                <div class="modal-header border-0 p-0 mb-4">
+                    <button type="button" class="btn-close" data-bs-submit="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="modal-dynamic-content">
+                        <!-- Filled dynamically when a product is clicked -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white text-muted text-center py-5 border-top">
+        <p class="small text-uppercase tracking-widest mb-0" style="font-size:0.65rem; letter-spacing: 0.2em;">&copy; 2026 L'FLORA GRACE Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const shopCatalog = [
+            { id: 1, title: "Renewal Botanical Elixir", subtitle: "Resurface. Revitalize. Renew.", price: 235.00, image_url: "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, title: "Radiance Defense Serum", subtitle: "Brighten. Protect. Perfect.", price: 215.00, image_url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" },
+            { id: 3, title: "Nourishing Face Elixir", subtitle: "Nourish. Balance. Glow.", price: 245.00, image_url: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=80" },
+            { id: 4, title: "Absolute Eye Complex", subtitle: "De-puff. Brighten. Lift.", price: 125.00, image_url: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=500&q=80" },
+            { id: 5, title: "Hydra-Infusion Cleansing Gel", subtitle: "Purify. Hydrate. Refresh.", price: 85.00, image_url: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" },
+            { id: 6, title: "Resveratrol Restorative Cream", subtitle: "Firm. Replenish. Smooth.", price: 195.00, image_url: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        function displayShopProducts() {
+            const shopContainer = document.getElementById('curated-elixirs');
+            shopContainer.innerHTML = ''; 
+
+            shopCatalog.forEach(product => {
+                shopContainer.innerHTML += `
+                    <div class="col-12 col-sm-6 col-md-4 product-card-container">
+                        <!-- Clicking image box triggers the view modal -->
+                        <div class="image-cream-box" onclick="openProductDetailView(${product.id})">
+                            <img src="${product.image_url}" alt="${product.title}">
+                        </div>
+                        <!-- Clicking product title triggers the view modal -->
+                        <h4 class="prod-title" onclick="openProductDetailView(${product.id})">${product.title}</h4>
+                        <p class="prod-subtitle">${product.subtitle}</p>
+                        <div class="prod-price">$${product.price.toFixed(2)}</div>
+                        <button onclick="silentAddToBag(${product.id})" class="btn-add-to-bag">Add To Bag</button>
+                    </div>
+                `;
+            });
+        }
+
+        function openProductDetailView(productId) {
+            const product = shopCatalog.find(item => item.id === productId);
+            if(!product) return;
+
+            const modalContentContainer = document.getElementById('modal-dynamic-content');
+            
+            // Generate content reflecting design principles found in Screenshot 2026-06-08 173040.png and Screenshot 2026-06-08 172925.png
+            modalContentContainer.innerHTML = `
+                <!-- Top Section: Visual Highlights & Details (Styled like Screenshot 2026-06-08 173040.png) -->
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-4 text-end d-none d-md-block pe-4">
+                        <div class="mb-4">
+                            <div class="feature-heading text-uppercase">Zero Synthetics</div>
+                            <div class="pointer-line mb-2"></div>
+                            <p class="text-muted feature-callout">Without traditional irritants, our completely refined water-based gel structure matches cellular sensitivity.</p>
+                        </div>
+                        <div>
+                            <div class="feature-heading text-uppercase">Award Winning Fragrances</div>
+                            <div class="pointer-line mb-2"></div>
+                            <p class="text-muted feature-callout">Unique 100% natural aromatics blended using handpicked organic oil isolates harvested from botanical roots.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+                        <div class="p-4 bg-white shadow-sm inline-block" style="border-radius: 50%; width: 280px; height: 280px; margin: 0 auto; overflow:hidden; display: flex; align-items: center; justify-content: center;">
+                            <img src="${product.image_url}" alt="${product.title}" style="max-height: 85%; max-width: 85%; object-fit: contain;">
+                        </div>
+                        <h3 class="modal-feature-title text-uppercase mt-4 mb-1">${product.title}</h3>
+                        <p class="text-muted small italic">${product.subtitle}</p>
+                        <div class="fw-bold my-2">$${product.price.toFixed(2)}</div>
+                        <button onclick="silentAddToBag(${product.id})" class="btn-add-to-bag mt-2">Add to bag</button>
+                    </div>
+
+                    <div class="col-md-4 text-start d-none d-md-block ps-4">
+                        <div class="mb-4">
+                            <div class="feature-heading text-uppercase">Odor & Balance Control</div>
+                            <div class="pointer-line mb-2" style="transform: scaleX(-1);"></div>
+                            <p class="text-muted feature-callout">Vegetable-derived live enzymes breakdown pollutants and reset surface bacterial biomes instantly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section: Customer Reviews UI (Styled like Screenshot 2026-06-08 172925.png) -->
+                <div class="mt-5 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+                        <h4 class="review-section-title text-uppercase mb-0">Customer Reviews</h4>
+                        <span class="small text-muted text-uppercase cursor-pointer fw-medium" style="letter-spacing:0.05em;">Write a review</span>
+                    </div>
+
+                    <div class="row review-box pt-2 mb-3">
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <div class="fw-bold">Julie M.</div>
+                            <div class="text-muted small"><i class="bi bi-patch-check-fill text-success"></i> Verified buyer</div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="star-rating mb-1">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            </div>
+                            <div class="fw-semibold mb-1">Incredibly gentle formulation</div>
+                            <p class="text-muted mb-1">Absolute luxury on sensitive skin areas. The natural aroma lingers subtly throughout afternoon meetings without feeling overwhelming.</p>
+                            <span class="verified-badge">Verified by <strong>shop</strong></span>
+                        </div>
+                        <div class="col-md-2 text-md-end text-muted small">6 DAYS AGO</div>
+                    </div>
+
+                    <div class="row review-box pt-2 mb-3">
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <div class="fw-bold">Gina M.</div>
+                            <div class="text-muted small"><i class="bi bi-patch-check-fill text-success"></i> Verified buyer</div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="star-rating mb-1">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <div class="fw-semibold mb-1">Best Elixir Ever!</div>
+                            <p class="text-muted mb-2">My favorite organic drop that I have ever integrated into my routine! Highly recommend to anyone seeking high-grade balance results.</p>
+                            <div class="small fw-semibold text-muted mb-1"><i class="bi bi-heart-fill text-dark me-1"></i> Would recommend</div>
+                        </div>
+                        <div class="col-md-2 text-md-end text-muted small">16 DAYS AGO</div>
+                    </div>
+                </div>
+            `;
+
+            // Display bootstrap modal programmatically 
+            const detailModal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+            detailModal.show();
+        }
+
+        function silentAddToBag(productId) {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            let existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) { 
+                existingItem.qty += 1; 
+            } else { 
+                cart.push({ id: productId, qty: 1 }); 
+            }
+            
+            localStorage.setItem('lflora_cart', JSON.stringify(cart));
+            document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+            
+            // Optionally close active modal windows gracefully
+            const openModalElement = document.getElementById('productDetailModal');
+            const modalInstance = bootstrap.Modal.getInstance(openModalElement);
+            if(modalInstance) modalInstance.hide();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayShopProducts();
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+        });
+    </script>
+</body>
+</html>

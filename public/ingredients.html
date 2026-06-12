@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'FLORA GRACE | Ingredient Master Glossary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-cream: #f6f4f0;
+            --luxury-mint: #f2f6f4; /* Extracted background from image_b428e1.png */
+            --luxury-text-dark: #111111;
+            --luxury-brand-green: #1c3d27; /* Dark green editorial tone from image_b428e1.png */
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--luxury-text-dark);
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            letter-spacing: 0.2em;
+            font-size: 1.8rem;
+        }
+        .brand-sub {
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            display: block;
+            color: #777777;
+        }
+
+        .ingredient-hero {
+            background-color: var(--luxury-cream);
+            padding: 5rem 0 4rem 0;
+            text-align: center;
+        }
+        .section-serif-title {
+            font-family: var(--font-serif);
+        }
+        .ingredient-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ingredient-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        }
+        .badge-active-target {
+            background-color: #eae7e1;
+            color: var(--luxury-text-dark);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0;
+            display: inline-block;
+        }
+        .associated-product-box {
+            background-color: #faf9f6;
+            border-top: 1px solid #eeeeee;
+            padding: 1.25rem;
+        }
+        .associated-product-box img {
+            max-height: 80px;
+            mix-blend-mode: multiply;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        /* --- Climate Conscious Split-Sections (Inspired by image_b428e1.png) --- */
+        .sustainability-split-section {
+            background-color: var(--luxury-mint);
+            overflow: hidden;
+        }
+        .sustainability-image-panel {
+            background-image: url('https://images.unsplash.com/photo-1545167622-3a6ac756afa4?auto=format&fit=crop&w=1200&q=80'); /* Stylized black and white foliage replicating image_b428e1.png */
+            background-size: cover;
+            background-position: center;
+            min-height: 550px;
+            filter: grayscale(100%) contrast(105%);
+        }
+        /* Second split section image configuration */
+        .sustainability-image-panel-alt {
+            background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80'); /* Alternating deep forest landscape */
+            background-size: cover;
+            background-position: center;
+            min-height: 550px;
+            filter: grayscale(100%) contrast(105%);
+        }
+        .sustainability-text-panel {
+            padding: 6rem 4rem;
+        }
+        .sustainability-heading {
+            font-family: var(--font-sans);
+            color: var(--luxury-brand-green);
+            font-weight: 500;
+            font-size: 1.35rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .sustainability-paragraph {
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: #2b3a32;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            max-width: 540px;
+            letter-spacing: 0.01em;
+        }
+        .sustainability-link {
+            font-size: 0.82rem;
+            color: #2b3a32;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .sustainability-link:hover {
+            color: var(--luxury-brand-green);
+        }
+
+        @media (max-width: 991.98px) {
+            .sustainability-text-panel {
+                padding: 4rem 2rem;
+            }
+            .sustainability-image-panel, .sustainability-image-panel-alt {
+                min-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 px-4">
+        <div class="container-fluid">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100 order-1 order-lg-0" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="product.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="/#philosophy-section">Science</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase active" href="ingredients.html">Ingredients</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase" href="/#journal-section">Journal</a></li>
+                </ul>
+            </div>
+            <a class="navbar-brand mx-auto text-center order-0" href="/">
+                <h1 class="brand-name mb-0">L'FLORA</h1>
+                <span class="brand-sub">GRACE</span>
+            </a>
+            <div class="collapse navbar-collapse w-100 order-2 justify-content-end" id="navbarNavRight">
+                <ul class="navbar-nav gap-3 flex-row justify-content-end align-items-center">
+                    <li class="nav-item dropdown" id="account-menu-item">
+                        <a class="nav-link text-uppercase" href="account.html"><i class="bi bi-person me-1"></i> Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="cart.html"><i class="bi bi-bag me-1"></i> Bag (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="ingredient-hero">
+        <div class="container">
+            <span class="text-uppercase tracking-widest text-muted small d-block mb-2">Transparency Ledger</span>
+            <h2 class="display-4 section-serif-title mb-3">Formulation Sourcing & Synergies</h2>
+            <p class="text-muted small mx-auto max-w-md style-serif italic" style="max-width: 500px; font-size: 0.95rem;">
+                Every L'FLORA GRACE matrix meticulously bridges deep botanical wisdom alongside clean clinical actives to produce visible cell repair.
+            </p>
+        </div>
+    </section>
+
+    <main class="container my-5 py-3">
+        <div class="row mb-4">
+            <div class="col-12 text-center text-md-start">
+                <h3 class="section-serif-title h4 border-bottom pb-2 mb-4">Active Sourced Compounds</h3>
+            </div>
+        </div>
+
+        <div id="ingredients-master-container" class="row justify-content-center g-4">
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-secondary" role="status"></div>
+            </div>
+        </div>
+    </main>
+
+    <section class="sustainability-split-section container-fluid p-0 border-top">
+        <div class="row g-0 align-items-stretch">
+            <div class="col-12 col-lg-6 sustainability-image-panel"></div>
+            
+            <div class="col-12 col-lg-6 d-flex align-items-center">
+                <div class="sustainability-text-panel">
+                    <h3 class="sustainability-heading">Climate Conscious</h3>
+                    
+                    <p class="sustainability-paragraph">
+                        At L'FLORA GRACE, we are continuously improving, striving to make our products as clean – and green – as we possibly can. We love our planet and our communities and strive to leave things a little better than we found them.
+                    </p>
+                    
+                    <p class="sustainability-paragraph">
+                        We know we don't have to live in a world where the products we love are detrimental to the environment or to ourselves. We constantly strive to create a balance between product and planet, providing you with a clean, sustainable experience without sacrificing quality and performance.
+                    </p>
+                    
+                    <p class="sustainability-paragraph">
+                        We set high standards for our small company to defy the norm and reduce our footprint in terms of our packaging design, in our choice of manufacturers throughout our supply chain, and in production. We make choices not always visible to consumers, and we strive to apply this mindset to all parts of our business.
+                    </p>
+                    
+                    <p class="mb-0">
+                        <a href="#sustainability" class="sustainability-link">Read more about our Sustainability standards here.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sustainability-split-section container-fluid p-0 border-top">
+        <div class="row g-0 align-items-stretch flex-column-reverse flex-lg-row">
+            <div class="col-12 col-lg-6 d-flex align-items-center">
+                <div class="sustainability-text-panel">
+                    <h3 class="sustainability-heading">Botanical Integrity</h3>
+                    
+                    <p class="sustainability-paragraph">
+                        Our sourcing process respects nature's perfect timeline. We deliberately partner with local heritage farms that employ regenerative agricultural systems, ensuring wild biomes remain unharmed during active compound extractions.
+                    </p>
+                    
+                    <p class="sustainability-paragraph">
+                        By utilizing clean, trace-free extraction methods, we isolate high-potency molecular variations without introducing hazardous solvent chemical backwash into surrounding local water reservoirs.
+                    </p>
+                    
+                    <p class="sustainability-paragraph">
+                        True minimalist luxury means acknowledging that high-performance anti-aging matrices can coexist safely alongside environmental guardianship. From small-batch lab distillations to your shelf, we protect every vital micro-ecosystem.
+                    </p>
+                    
+                    <p class="mb-0">
+                        <a href="#botanical-standards" class="sustainability-link">Explore our trace-free extraction processes.</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 sustainability-image-panel-alt"></div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white-50 text-center py-4">
+        <p class="small text-uppercase tracking-widest mb-0" style="font-size:0.65rem;">&copy; 2026 L'FLORA GRACE Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function syncCartHeader() {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            let total = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = total;
+        }
+
+        function renderUserAccountMenu() {
+            const user = JSON.parse(localStorage.getItem('lflora_user'));
+            const container = document.getElementById('account-menu-item');
+            if(!container) return;
+
+            if (user) {
+                container.className = "nav-item dropdown";
+                container.innerHTML = `
+                    <a class="nav-link dropdown-toggle text-uppercase" href="#" id="userDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-check-fill text-success me-1"></i> Hi, ${user.name}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border rounded-0 shadow-sm bg-white" aria-labelledby="userDrop">
+                        <li class="px-3 py-2 small text-muted border-bottom d-block">Logged in:<br><strong>${user.email}</strong></li>
+                        <li><a class="dropdown-item py-2 small text-danger" href="#" onclick="handleLogoutUser()">Sign Out</a></li>
+                    </ul>
+                `;
+            }
+        }
+
+        function handleLogoutUser() {
+            localStorage.removeItem('lflora_user');
+            window.location.reload();
+        }
+
+        // Static configuration mapping to specific database IDs
+        const staticIngredientsMatrix = [
+            {
+                number: "01",
+                name: "Glacial Marine Algae Extract",
+                type: "Botanical Restructuring Actives",
+                desc: "Harvested sustainably from deep sub-zero arctic shelves. Rich in vital mineral elements and complex polysaccharides designed to continuously optimize intracellular moisture retention and smooth skin texture.",
+                targetProductId: 1
+            },
+            {
+                number: "02",
+                name: "Biocompatible Botanical Squalane",
+                type: "Epidermal Lipid Replenisher",
+                desc: "Sourced precisely from cold-pressed Mediterranean olives. It mimics skin squalene molecular weight perfectly, sealing hydration gaps without heavy, pore-clogging grease.",
+                targetProductId: 2
+            },
+            {
+                number: "03",
+                name: "Fermented Resveratrol Matrix",
+                type: "Clinical Anti-Oxidant Complex",
+                desc: "An ultra-refined active compound that targets hyperpigmentation. It strengthens cell membranes against free radicals, evening skin tone safely over time.",
+                targetProductId: 3
+            }
+        ];
+
+        async function buildIngredientsGlossary() {
+            try {
+                // Mock endpoint fallback data structure to guarantee rendering if backend handles load gracefully
+                let products = [
+                    { id: 1, title: "Renewal Botanical Elixir", subtitle: "Resurface. Revitalize. Renew.", image_url: "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=500&q=80" },
+                    { id: 2, title: "Radiance Defense Serum", subtitle: "Brighten. Protect. Perfect.", image_url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" },
+                    { id: 3, title: "Nourishing Face Elixir", subtitle: "Nourish. Balance. Glow.", image_url: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=80" }
+                ];
+
+                try {
+                    const response = await fetch('/api/products');
+                    if(response.ok) products = await response.json();
+                } catch(e) {
+                    console.log("Using local catalog matrix definitions.");
+                }
+                
+                const gridContainer = document.getElementById('ingredients-master-container');
+                gridContainer.innerHTML = ''; 
+
+                staticIngredientsMatrix.forEach(ing => {
+                    const matchedProduct = products.find(p => p.id === ing.targetProductId);
+                    
+                    let productMarkup = '';
+                    if (matchedProduct) {
+                        productMarkup = `
+                            <div class="associated-product-box mt-3 d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-3" onclick="window.location.href='/product.html?id=${matchedProduct.id}'" style="cursor:pointer;">
+                                    <img src="${matchedProduct.image_url}" alt="${matchedProduct.title}">
+                                    <div>
+                                        <span class="text-uppercase tracking-widest text-muted d-block" style="font-size:0.6rem;">Formulated In:</span>
+                                        <h5 class="text-uppercase font-sm m-0 tracking-wider" style="font-size:0.75rem; font-weight:600;">${matchedProduct.title}</h5>
+                                        <p class="small text-muted italic font-serif m-0" style="font-size:0.75rem;">${matchedProduct.subtitle}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="/product.html?id=${matchedProduct.id}" class="btn btn-dark text-uppercase tracking-widest px-3 py-2" style="font-size:0.6rem; border-radius:0;">View Product Details</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    gridContainer.innerHTML += `
+                        <div class="col-12 col-lg-6 mb-2">
+                            <div class="card ingredient-card border-0 h-100 d-flex flex-column justify-content-between">
+                                <div class="p-4">
+                                    <div class="d-flex align-items-start justify-content-between mb-3">
+                                        <div>
+                                            <span class="badge-active-target text-uppercase mb-2">${ing.type}</span>
+                                            <h4 class="section-serif-title display-6" style="font-size:1.6rem; font-weight:400;">
+                                                <span class="text-muted pe-2" style="font-size:1.1rem; font-family:var(--font-sans);">${ing.number}.</span>${ing.name}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small lh-lg m-0">${ing.desc}</p>
+                                </div>
+                                ${productMarkup}
+                            </div>
+                        </div>
+                    `;
+                });
+
+            } catch (err) {
+                console.error("Ingredients hydration error:", err);
+                document.getElementById('ingredients-master-container').innerHTML = `
+                    <div class="col-12 text-center text-danger">Unable to load ingredients catalog. Ensure the backend server is running.</div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            syncCartHeader();
+            renderUserAccountMenu();
+            buildIngredientsGlossary();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'FLORA GRACE | Account Authentication</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container { min-height: 75vh; display: flex; align-items: center; justify-content: center; }
+        .auth-card { background: #fbfbfa; border: 1px solid #e5e5e0; padding: 3rem; width: 100%; max-width: 450px; }
+        .form-control-luxury {
+            border: none; border-bottom: 1px solid #cccccc; border-radius: 0; background: transparent; padding-left: 0; font-size: 0.85rem;
+        }
+        .form-control-luxury:focus { box-shadow: none; border-bottom: 1px solid #111; background: transparent; }
+    </style>
+</head>
+<body>
+
+    <header class="text-center py-4 border-bottom bg-white">
+        <a class="text-decoration-none text-dark" href="/">
+            <h1 class="brand-name mb-0">L'FLORA</h1>
+            <span class="brand-sub">GRACE</span>
+        </a>
+    </header>
+
+    <main class="container auth-container my-5">
+        <div class="auth-card">
+            <!-- Sign In Context Panel -->
+            <div id="signin-view">
+                <h3 class="section-serif-title mb-2">Sign In</h3>
+                <p class="small text-muted mb-4">Access your premium skincare profile allocations.</p>
+                <form onsubmit="handleAuthAction(event, 'signin')">
+                    <div class="mb-3"><input type="email" id="login-email" class="form-control form-control-luxury" placeholder="Email Address" required></div>
+                    <div class="mb-4"><input type="password" class="form-control form-control-luxury" placeholder="Password" required></div>
+                    <button type="submit" class="btn btn-dark btn-luxury w-100 py-3 text-uppercase mb-3">Sign In</button>
+                </form>
+                <div class="text-center"><a href="#" onclick="toggleAuthView(false)" class="small text-muted">Create a new account profile</a></div>
+            </div>
+
+            <!-- Sign Up Context Panel -->
+            <div id="signup-view" class="d-none">
+                <h3 class="section-serif-title mb-2">Create Profile</h3>
+                <p class="small text-muted mb-4">Join the L'FLORA GRACE collective portal.</p>
+                <form onsubmit="handleAuthAction(event, 'signup')">
+                    <div class="mb-3"><input type="text" id="reg-name" class="form-control form-control-luxury" placeholder="Full Name" required></div>
+                    <div class="mb-3"><input type="email" id="reg-email" class="form-control form-control-luxury" placeholder="Email Address" required></div>
+                    <div class="mb-4"><input type="password" class="form-control form-control-luxury" placeholder="Create Secure Password" required></div>
+                    <button type="submit" class="btn btn-dark btn-luxury w-100 py-3 text-uppercase mb-3">Create Profile</button>
+                </form>
+                <div class="text-center"><a href="#" onclick="toggleAuthView(true)" class="small text-muted">Already have a profile? Sign In</a></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleAuthView(showSignIn) {
+            if(showSignIn) {
+                document.getElementById('signin-view').classList.remove('d-none');
+                document.getElementById('signup-view').classList.add('d-none');
+            } else {
+                document.getElementById('signin-view').classList.add('d-none');
+                document.getElementById('signup-view').classList.remove('d-none');
+            }
+        }
+    
+        async function handleAuthAction(e, type) {
+            e.preventDefault();
+            
+            if (type === 'signup') {
+                const name = document.getElementById('reg-name').value;
+                const email = document.getElementById('reg-email').value;
+                const password = e.target.querySelector('input[type="password"]').value;
+    
+                try {
+                    // Neon ડેટાબેઝમાં યુઝર સેવ કરવા બેકએન્ડને કોલ કરો
+                    const response = await fetch('/api/auth/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, password })
+                    });
+                    const data = await response.json();
+    
+                    if (data.success) {
+                        alert('✨ Luxury profile registered in Neon Cloud!');
+                        localStorage.setItem('lflora_user', JSON.stringify(data.user));
+                        window.location.href = '/';
+                    } else {
+                        alert('❌ Error: ' + data.error);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Server connection failed.');
+                }
+    
+            } else {
+                const email = document.getElementById('login-email').value;
+                const password = e.target.querySelector('input[type="password"]').value;
+    
+                try {
+                    // Neon માંથી યુઝર વેરિફાય કરવા બેકએન્ડને કોલ કરો
+                    const response = await fetch('/api/auth/signin', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await response.json();
+    
+                    if (data.success) {
+                        alert('🔑 Welcome back to L\'FLORA!');
+                        localStorage.setItem('lflora_user', JSON.stringify(data.user));
+                        window.location.href = '/';
+                    } else {
+                        alert('❌ Error: ' + data.error);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Server connection failed.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

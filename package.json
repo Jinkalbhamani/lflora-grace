@@ -1,0 +1,15 @@
+{
+    "name": "lflora-luxury-store",
+    "version": "1.0.0",
+    "description": "Luxury E-Commerce store landing frame powered by Node, SQLite and Bootstrap.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "express": "^4.19.2",
+        "pg": "^8.21.0",
+        "sqlite3": "^5.1.7"
+    }
+}

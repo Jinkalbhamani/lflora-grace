@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'FLORA GRACE | Luxury Experience</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,400;1,300&family=Montserrat:wght=200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-pure-white: #ffffff;
+            --bg-luxury-cream: #fbf9f6;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --gold-accent: #897658;
+            --charcoal: #1a1a1a;
+            --soft-border: rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-pure-white);
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Luxury Header */
+        .luxury-navbar {
+            background-color: var(--bg-pure-white);
+            border-bottom: 1px solid var(--soft-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            font-weight: 400;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover { color: var(--gold-accent); }
+
+        .brand-title {
+            font-family: var(--font-serif);
+            letter-spacing: 0.25em;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        /* Workspace & Structure */
+        .cart-cream-workspace {
+            background-color: var(--bg-luxury-cream);
+            padding: 5rem 0;
+            min-height: 85vh;
+        }
+
+        .app-view { display: none; }
+        .app-view.active-view { display: block; animation: smoothSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        @keyframes smoothSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headers */
+        .view-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .view-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+        .view-header span {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #888;
+        }
+
+        /* Product Detail Page Styles */
+        .detail-img-box {
+            background: #ffffff;
+            padding: 3rem;
+            border: 1px solid var(--soft-border);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .detail-img-box img {
+            max-height: 480px;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .detail-img-box:hover img { transform: scale(1.02); }
+
+        .product-serif-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+        .price-tag {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--gold-accent);
+            letter-spacing: 0.05em;
+        }
+
+        /* Premium Radio/ML Pill Elements */
+        .size-variant-selector input[type="radio"] { display: none; }
+        .size-variant-selector label {
+            border: 1px solid #d1cfcb;
+            padding: 0.6rem 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 2px;
+        }
+        .size-variant-selector input[type="radio"]:checked + label {
+            background-color: var(--charcoal);
+            color: #ffffff;
+            border-color: var(--charcoal);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .info-pill-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            margin-top: 2rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+        }
+
+        /* Cards Layout inside Shopping Bag */
+        .cart-item-frame { 
+            background: #ffffff;
+            border: 1px solid var(--soft-border);
+            padding: 2rem; 
+            margin-bottom: 1.5rem; 
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+        .cart-product-img-box { 
+            width: 100px; 
+            height: 100px; 
+            background-color: var(--bg-luxury-cream); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 0.5rem;
+        }
+        .cart-product-img-box img { max-height: 100%; max-width: 100%; object-fit: cover; }
+        
+        .order-summary-box { 
+            background-color: #ffffff; 
+            border: 1px solid var(--soft-border); 
+            padding: 3rem 2rem; 
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+        }
+        .quantity-badge { background: #f0ede7; color: var(--charcoal); padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 500; }
+
+        /* Premium Forms Layout */
+        .checkout-form-box {
+            background-color: #ffffff;
+            border: 1px solid var(--soft-border);
+            padding: 4rem 3.5rem;
+            border-radius: 6px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.03);
+        }
+        .form-control, .form-select {
+            border-radius: 2px;
+            border: 1px solid #dcdad4;
+            padding: 0.85rem 1.2rem;
+            font-size: 0.9rem;
+            background-color: #faf9f6;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--charcoal);
+            background-color: #ffffff;
+            box-shadow: none;
+        }
+
+        /* Luxury Custom Buttons */
+        .btn-luxury {
+            background-color: var(--charcoal);
+            color: #fff;
+            border: 1px solid var(--charcoal);
+            border-radius: 2px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            padding: 1.1rem 2rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .btn-luxury:hover {
+            background-color: transparent;
+            color: var(--charcoal);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Advanced Dynamic Payment Selector Cards */
+        .payment-method-row {
+            border: 1px solid #e2e0da;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .payment-method-row:hover { border-color: var(--charcoal); }
+        .payment-method-row input[type="radio"] { margin-right: 15px; accent-color: var(--charcoal); }
+
+        .payment-sub-panel {
+            background: #faf9f7;
+            border: 1px solid #e5e2db;
+            padding: 2rem;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0 4px 4px;
+            display: none;
+        }
+        .payment-sub-panel.active-panel { display: block; animation: smoothSlideUp 0.4s ease; }
+
+        /* Premium Interactive UPI App Selector Cards */
+        .upi-app-card {
+            border: 1px solid #e2e0da;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: #fff;
+            border-radius: 4px;
+        }
+        .upi-app-card:hover { border-color: #999; transform: translateY(-2px); }
+        .upi-app-card.selected-app { border-color: var(--charcoal); background: #fffdf9; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .upi-logo { font-size: 1.6rem; margin-bottom: 0.25rem; }
+        .gpay-color { color: #4285F4; }
+        .phonepe-color { color: #5f259f; }
+        .paytm-color { color: #00baf2; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar navbar-expand-lg navbar-light luxury-navbar py-3 px-4 sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100 order-1 order-lg-0" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showView('product-detail-view')">Product Details</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Home Assortment</a></li>
+                </ul>
+            </div>
+            <a class="navbar-brand mx-auto text-center order-0" href="/">
+                <h1 class="mb-0 brand-title">L'FLORA</h1>
+                <span style="font-size: 0.6rem; letter-spacing: 0.5em; display:block; color: #888; margin-top: -3px;">GRACE</span>
+            </a>
+            <div class="collapse navbar-collapse w-100 order-2 justify-content-end" id="navbarNavRight">
+                <ul class="navbar-nav gap-3 flex-row justify-content-end align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="#" onclick="showView('shopping-bag-view')" style="color: var(--gold-accent);">
+                            <i class="bi bi-bag-fill me-1"></i> Bag (<span id="cart-count">0</span>)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-cream-workspace">
+        <div class="container">
+
+            <div id="product-detail-view" class="app-view active-view">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="detail-img-box">
+                            <img id="detail-product-image" src="" alt="Luxury Product Image" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ps-xl-5">
+                        <span class="text-uppercase tracking-widest text-muted small d-block mb-2" style="letter-spacing: 0.25em;">L'FLORA GRACE Botanicals</span>
+                        <h2 id="detail-product-title" class="product-serif-title mb-3">Loading Elixir...</h2>
+                        <div id="detail-product-price" class="price-tag mb-4">$0.00</div>
+                        
+                        <p id="detail-product-desc" class="text-muted mb-4" style="line-height: 1.7; font-size: 0.95rem;">
+                            Premium clinical architecture designed to restore hydration indices natively. Crafted carefully with rare active ingredients harvested directly across verified green ecosystems.
+                        </p>
+
+                        <div class="mb-4 pt-2">
+                            <span class="small text-uppercase tracking-wider d-block mb-3 fw-semibold" style="font-size:0.75rem; color:#555;">Select Volume Size</span>
+                            <div class="d-flex gap-3 size-variant-selector">
+                                <input type="radio" id="size-50" name="size_ml" value="50ml" checked>
+                                <label for="size-50">50 ML</label>
+
+                                <input type="radio" id="size-100" name="size_ml" value="100ml">
+                                <label for="size-100">100 ML</label>
+                            </div>
+                        </div>
+
+                        <div class="border-top pt-3 mt-4">
+                            <span class="info-pill-title">Active Ingredients</span>
+                            <small id="detail-product-ingredients" class="text-muted d-block mt-2" style="line-height:1.6; font-size:0.85rem;">Squalane, Hyaluronic Acid Complexes, Organic Bulgarian Rose Distillates.</small>
+                        </div>
+
+                        <button onclick="addCurrentProductToBag()" class="btn btn-luxury w-100 py-3 text-uppercase mt-5">Add to Bag Asset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="shopping-bag-view" class="app-view">
+                <div class="view-header">
+                    <span>Review Selections</span>
+                    <h2>Your Curated Bag</h2>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-8">
+                        <div id="cart-items-container"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order-summary-box">
+                            <h4 class="text-uppercase tracking-widest small mb-4 fw-semibold" style="letter-spacing:0.15em;">Summary</h4>
+                            <div class="d-flex justify-content-between mb-3 small text-muted">
+                                <span>Items Subtotal</span>
+                                <span id="summary-subtotal" class="text-dark fw-medium">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3 small text-muted">
+                                <span>Worldwide Shipping</span>
+                                <span class="text-success text-uppercase small fw-medium">Complimentary</span>
+                            </div>
+                            <hr class="my-4" style="border-color: var(--soft-border);">
+                            <div class="d-flex justify-content-between mb-4 text-dark align-items-center">
+                                <span class="text-uppercase tracking-wider small fw-semibold">Total Due</span>
+                                <span id="summary-grandtotal" class="fs-4 fw-light" style="color:var(--gold-accent);">$0.00</span>
+                            </div>
+                            <button onclick="checkAuthAndProceed()" id="checkout-finalize-btn" class="btn btn-luxury w-100 py-3 text-uppercase">Proceed to Delivery Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="checkout-form-view" class="app-view">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9">
+                        <div class="checkout-form-box">
+                            <h3 class="mb-2 text-center" style="font-family: var(--font-serif); font-size: 2.6rem; font-style: italic; font-weight: 300;">Delivery & Settlement</h3>
+                            <p class="text-muted text-center small text-uppercase tracking-wider mb-5" style="letter-spacing: 0.15em; font-size:0.7rem;">Secure dispatch context architecture profile</p>
+                            
+                            <form id="delivery-details-form" onsubmit="handleFinalOrderPlacement(event)">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-uppercase fw-semibold text-muted" style="font-size:0.7rem;">Full Name</label>
+                                        <input type="text" class="form-control" placeholder="Alex Mercer" required id="customer-name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-uppercase fw-semibold text-muted" style="font-size:0.7rem;">Phone Number</label>
+                                        <input type="tel" class="form-control" placeholder="+91 98765 43210" required id="customer-phone">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small text-uppercase fw-semibold text-muted" style="font-size:0.7rem;">Shipping Address Line</label>
+                                        <input type="text" class="form-control" placeholder="Flat No, Building Name, Local Street Route" required id="customer-address">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-uppercase fw-semibold text-muted" style="font-size:0.7rem;">City</label>
+                                        <input type="text" class="form-control" placeholder="Mumbai" required id="customer-city">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-uppercase fw-semibold text-muted" style="font-size:0.7rem;">Postal Code</label>
+                                        <input type="text" class="form-control" placeholder="400001" required id="customer-zip">
+                                    </div>
+                                    
+                                    <div class="col-12 mt-5">
+                                        <label class="form-label small text-uppercase fw-semibold text-dark d-block mb-3 border-bottom pb-2" style="letter-spacing:0.1em;">Select Payment Configuration</label>
+                                        
+                                        <div class="payment-method-row" onclick="document.getElementById('pay-cod').click()">
+                                            <input type="radio" name="payment_method" id="pay-cod" value="COD" checked onclick="togglePaymentPanels('none'); event.stopPropagation();">
+                                            <div>
+                                                <strong class="d-block small text-uppercase" style="letter-spacing:0.05em;">Cash on Delivery (COD)</strong>
+                                                <small class="text-muted" style="font-size:0.75rem;">Pay dynamically via cash or phone scanners right during home arrival.</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-method-row" onclick="document.getElementById('pay-card').click()">
+                                            <input type="radio" name="payment_method" id="pay-card" value="CARD" onclick="togglePaymentPanels('card-panel'); event.stopPropagation();">
+                                            <div>
+                                                <strong class="d-block small text-uppercase" style="letter-spacing:0.05em;">Credit / Debit Card</strong>
+                                                <small class="text-muted" style="font-size:0.75rem;">Supports Visa, Mastercard, RuPay and Premium Amex networks seamlessly.</small>
+                                            </div>
+                                        </div>
+
+                                        <div id="card-panel" class="payment-sub-panel row g-3 mx-0">
+                                            <div class="col-12">
+                                                <label class="small text-muted text-uppercase fw-medium mb-1" style="font-size:0.65rem;">Card Number</label>
+                                                <input type="text" id="card-num" class="form-control" placeholder="4111 2222 3333 4444" maxlength="19">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="small text-muted text-uppercase fw-medium mb-1" style="font-size:0.65rem;">Expiry Date</label>
+                                                <input type="text" id="card-exp" class="form-control" placeholder="MM/YY" maxlength="5">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="small text-muted text-uppercase fw-medium mb-1" style="font-size:0.65rem;">CVV Code</label>
+                                                <input type="password" id="card-cvv" class="form-control" placeholder="•••" maxlength="3">
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-method-row" onclick="document.getElementById('pay-upi').click()">
+                                            <input type="radio" name="payment_method" id="pay-upi" value="UPI" onclick="togglePaymentPanels('upi-panel'); event.stopPropagation();">
+                                            <div>
+                                                <strong class="d-block small text-uppercase" style="letter-spacing:0.05em;">Instant UPI Nodes (G-Pay, PhonePe, Paytm)</strong>
+                                                <small class="text-muted" style="font-size:0.75rem;">Direct authentication redirection maps linked inside Indian banking grids.</small>
+                                            </div>
+                                        </div>
+
+                                        <div id="upi-panel" class="payment-sub-panel mx-0">
+                                            <span class="small text-muted text-uppercase fw-medium d-block mb-3" style="font-size:0.65rem;">Select Instant Payment App</span>
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-4">
+                                                    <div class="upi-app-card" id="app-gpay" onclick="selectUpiApp('GooglePay', 'okaxis', 'app-gpay'); event.stopPropagation();">
+                                                        <i class="bi bi-google upi-logo gpay-color"></i>
+                                                        <small class="d-block fw-medium" style="font-size:0.75rem; color:#444;">GooglePay</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="upi-app-card" id="app-phonepe" onclick="selectUpiApp('PhonePe', 'ybl', 'app-phonepe'); event.stopPropagation();">
+                                                        <i class="bi bi-wallet2 upi-logo phonepe-color"></i>
+                                                        <small class="d-block fw-medium" style="font-size:0.75rem; color:#444;">PhonePe</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="upi-app-card" id="app-paytm" onclick="selectUpiApp('Paytm', 'paytm', 'app-paytm'); event.stopPropagation();">
+                                                        <i class="bi bi-lightning-charge-fill upi-logo paytm-color"></i>
+                                                        <small class="d-block fw-medium" style="font-size:0.75rem; color:#444;">Paytm</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="small text-muted text-uppercase fw-medium mb-1" style="font-size:0.65rem;">Or Enter Custom VPA UPI ID</label>
+                                                <input type="text" id="upi-id" class="form-control" placeholder="merchantname@upi" style="background:#fff;">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="mt-5 d-flex gap-3 pt-3">
+                                    <button type="button" onclick="showView('shopping-bag-view')" class="btn btn-outline-dark rounded-0 px-4 py-3 text-uppercase small" style="letter-spacing:0.15em; font-size:0.8rem;">Back to Bag</button>
+                                    <button type="submit" class="btn btn-luxury flex-grow-1 text-uppercase tracking-widest fw-semibold">Finalize Luxury Order</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-white text-muted text-center py-5 border-top" style="border-color: var(--soft-border) !important;">
+        <p class="small text-uppercase tracking-widest mb-0" style="font-size:0.65rem; letter-spacing: 0.25em; color:#999;">&copy; 2026 L'FLORA GRACE Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const databaseCatalog = [
+            { id: 1, title: "Renewal Botanical Elixir", price: 235.00, image_url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=500" },
+            { id: 2, title: "Radiance Defense Serum", price: 215.00, image_url: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=500" },
+            { id: 3, title: "Nourishing Face Elixir", price: 245.00, image_url: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=500" }
+        ];
+
+        let currentActiveProductId = 1;
+
+        function showView(viewId) {
+            document.querySelectorAll('.app-view').forEach(view => {
+                view.classList.remove('active-view');
+            });
+            const targetView = document.getElementById(viewId);
+            if(targetView) targetView.classList.add('active-view');
+            
+            if(viewId === 'shopping-bag-view') {
+                populateCartView();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dedicated Gatekeeper: Validates your external account.html session state
+        function checkAuthAndProceed() {
+            const loggedInUser = localStorage.getItem('lflora_user');
+
+            if (loggedInUser) {
+                // User is authenticated! Parse profile data structures
+                const userObj = JSON.parse(loggedInUser);
+                
+                // Prefill user profile name instantly to reduce conversion friction
+                if (userObj && userObj.name) {
+                    document.getElementById('customer-name').value = userObj.name;
+                }
+                
+                showView('checkout-form-view');
+            } else {
+                // User anonymous -> Redirect cleanly to your existing account.html core asset
+                alert("✨ Please sign in or create a luxury profile to complete your checkout process.");
+                window.location.href = 'account.html';
+            }
+        }
+
+        function togglePaymentPanels(targetPanelId) {
+            document.querySelectorAll('.payment-sub-panel').forEach(panel => {
+                panel.classList.remove('active-panel');
+                panel.querySelectorAll('input').forEach(input => input.removeAttribute('required'));
+            });
+
+            if(targetPanelId !== 'none') {
+                const activePanel = document.getElementById(targetPanelId);
+                activePanel.classList.add('active-panel');
+                activePanel.querySelectorAll('input').forEach(input => input.setAttribute('required', 'true'));
+            }
+        }
+
+        function selectUpiApp(appName, vpaSuffix, cardElementId) {
+            document.querySelectorAll('.upi-app-card').forEach(card => card.classList.remove('selected-app'));
+            document.getElementById(cardElementId).classList.add('selected-app');
+            
+            const phoneVal = document.getElementById('customer-phone').value || "9876543210";
+            document.getElementById('upi-id').value = `${phoneVal}@${vpaSuffix}`;
+        }
+
+        function loadUrlContextParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const idParam = parseInt(urlParams.get('id'), 10);
+            if(idParam && databaseCatalog.some(p => p.id === idParam)) {
+                currentActiveProductId = idParam;
+            }
+            hydrateProductDetailPage();
+        }
+
+        function hydrateProductDetailPage() {
+            const product = databaseCatalog.find(p => p.id === currentActiveProductId);
+            if(!product) return;
+
+            document.getElementById('detail-product-image').src = product.image_url;
+            document.getElementById('detail-product-image').alt = product.title;
+            document.getElementById('detail-product-title').innerText = product.title;
+            document.getElementById('detail-product-price').innerText = `$${product.price.toFixed(2)}`;
+            
+            updateCartIconBadgeCountOnly();
+        }
+
+        function addCurrentProductToBag() {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            const selectedSize = document.querySelector('input[name="size_ml"]:checked').value;
+            
+            const existingItem = cart.find(item => item.id === currentActiveProductId && item.size === selectedSize);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ id: currentActiveProductId, qty: 1, size: selectedSize });
+            }
+            
+            localStorage.setItem('lflora_cart', JSON.stringify(cart));
+            showView('shopping-bag-view');
+        }
+
+        function updateCartIconBadgeCountOnly() {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+
+        function populateCartView() {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            const container = document.getElementById('cart-items-container');
+            let itemSubtotal = 0;
+            
+            document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+            container.innerHTML = '';
+
+            if(cart.length === 0) {
+                container.innerHTML = '<div class="text-muted py-5 text-center">Your luxury shopping bag is completely empty.</div>';
+                document.getElementById('summary-subtotal').innerText = "$0.00";
+                document.getElementById('summary-grandtotal').innerText = "$0.00";
+                document.getElementById('checkout-finalize-btn').disabled = true;
+                return;
+            }
+
+            document.getElementById('checkout-finalize-btn').disabled = false;
+
+            cart.forEach((cartItem, arrayIndex) => {
+                let product = databaseCatalog.find(p => p.id === cartItem.id);
+                if(product) {
+                    let costSum = product.price * cartItem.qty;
+                    itemSubtotal += costSum;
+                    container.innerHTML += `
+                        <div class="cart-item-frame d-flex align-items-center justify-content-between flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="cart-product-img-box"><img src="${product.image_url}" alt="${product.title}"></div>
+                                <div>
+                                    <h5 class="small text-uppercase mb-1 fw-semibold">${product.title}</h5>
+                                    <span class="text-muted small d-block mb-1">Volume Assortment: ${cartItem.size}</span>
+                                    <span class="fw-medium small" style="color:var(--gold-accent);">$${product.price.toFixed(2)}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-4">
+                                <div><span class="quantity-badge">${cartItem.qty} Pcs</span></div>
+                                <div class="fw-normal">$${costSum.toFixed(2)}</div>
+                                <button onclick="clearSpecificItemByIndex(${arrayIndex}); event.stopPropagation();" class="btn text-danger p-0 border-0 ms-2" style="opacity:0.7;"><i class="bi bi-trash3 fs-5"></i></button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('summary-subtotal').innerText = `$${itemSubtotal.toFixed(2)}`;
+            document.getElementById('summary-grandtotal').innerText = `$${itemSubtotal.toFixed(2)}`;
+        }
+
+        function clearSpecificItemByIndex(index) {
+            let cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('lflora_cart', JSON.stringify(cart));
+            populateCartView();
+        }
+
+        async function handleFinalOrderPlacement(event) {
+    event.preventDefault();
+    
+    const loggedInUser = localStorage.getItem('lflora_user');
+    let userId = null;
+    if (loggedInUser) {
+        userId = JSON.parse(loggedInUser).id;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('lflora_cart')) || [];
+    
+    // ✨ અહીં સુધારો કર્યો: હવે આઈડીની સાથે પ્રોડક્ટનું નામ અને કિંમત પણ ઓર્ડરમાં સેવ થશે!
+    const detailedItems = cart.map(item => {
+        const productInfo = databaseCatalog.find(p => p.id === item.id);
+        return {
+            product_id: item.id,
+            product_title: productInfo ? productInfo.title : "Unknown Product", // પ્રોડક્ટનું નામ
+            price: productInfo ? productInfo.price : 0,
+            quantity: item.qty,
+            size: item.size
+        };
+    });
+
+    const totalAmount = cart.reduce((sum, item) => {
+        const product = databaseCatalog.find(p => p.id === item.id);
+        return sum + (product ? product.price * item.qty : 0);
+    }, 0);
+
+    const shippingName = document.getElementById('customer-name').value;
+    const shippingPhone = document.getElementById('customer-phone').value;
+    const shippingAddress = document.getElementById('customer-address').value;
+    const shippingCity = document.getElementById('customer-city').value;
+    const shippingZip = document.getElementById('customer-zip').value;
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+    const orderPayload = {
+        userId,
+        items: detailedItems, // હવે અહીં નામ સાથેની ડિટેઇલ જશે
+        totalAmount,
+        shippingName,
+        shippingPhone,
+        shippingAddress,
+        shippingCity,
+        shippingZip,
+        paymentMethod
+    };
+
+    try {
+        const response = await fetch('/api/orders/place', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderPayload)
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`🎉 Order Placed Successfully in Neon!\n\nThank you, ${shippingName}.\nYour Order ID is: #00${data.orderId}`);
+            localStorage.removeItem('lflora_cart');
+            window.location.href = "/";
+        } else {
+            alert('❌ Failed to save order: ' + data.error);
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Could not sync order with backend server.');
+    }
+}
+
+        document.addEventListener('DOMContentLoaded', loadUrlContextParameters);
+    </script>
+</body>
+</html>
